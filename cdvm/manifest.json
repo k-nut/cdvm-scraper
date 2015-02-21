@@ -1,0 +1,22 @@
+{
+  "bot_id": "cdvm",
+  "title": "CDVM",
+  "description": "Bot for opencorporates mission 703",
+  "language": "python",
+  "data_type": "primary data",
+  "identifying_fields": [
+    "Numéro d'agrément"
+  ],
+  "company_fields": {
+    "name": "company"
+  },
+  "files": [
+    "scraper.py"
+  ],
+  "frequency": "monthly",
+  "publisher": {
+    "name": "CDVM",
+    "url": "http://www.cdvm.gov.ma/entreprises-de-marche/societes-de-bourse",
+    "terms": "n/a"
+  }
+}
