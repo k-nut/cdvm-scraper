@@ -5,7 +5,7 @@
   "language": "python",
   "data_type": "primary data",
   "identifying_fields": [
-    "Numéro d'agrément"
+    "Dénomination"
   ],
   "company_fields": {
     "name": "company"

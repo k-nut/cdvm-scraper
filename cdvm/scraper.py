@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 
+import re
 import json
 import datetime
 import turbotlib
 from bs4 import BeautifulSoup
 import requests
 
-def get_all_pages():
+def get_all_pages(base_extension):
     base_url = "http://www.cdvm.gov.ma"
     base_extension = "/entreprises-de-marche/societes-de-bourse"
+    base_extension = "/entreprises-de-marche/societe-de-gestion"
     r = requests.get(base_url + base_extension)
     text = r.text
     soup = BeautifulSoup(text)
-    div = soup.find("div", {"id": "quicktabs_tabpage_2_1"})
+    div = soup.find("div", id = re.compile("quicktabs_tabpage_\d_1"))
     links =div.find_all("li", {"class": "pager-item"}) 
     get_links(base_extension)
     for link in links:
@@ -24,7 +26,7 @@ def get_links(url_extension):
     r = requests.get(base_url + url_extension)
     text = r.text
     soup = BeautifulSoup(text)
-    div = soup.find("div", {"id": "quicktabs_tabpage_2_1"})
+    div = soup.find("div", id = re.compile("quicktabs_tabpage_\d_1"))
     tbody = div.find("tbody")
     for tr in tbody.find_all("tr"):
         extract_data(base_url + tr.find("a")["href"])
@@ -51,4 +53,6 @@ def extract_data(url):
     print(json.dumps(information))
 
 if __name__ == "__main__":
-    get_all_pages()
+    get_all_pages("/entreprises-de-marche/societes-de-bourse")
+    get_all_pages("/entreprises-de-marche/societe-de-gestion")
+    get_all_pages("/entreprises-de-marche/teneurs-de-comptes")
