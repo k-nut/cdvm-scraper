@@ -45,9 +45,18 @@ def extract_data(url):
             information[tr.find_all("td")[0].text] = tr.find_all("td")[1].text
         else:
             owners = {}
-            body = tr.find("tbody")
-            for row in body.find_all("tr"):
-                owners[row.find_all("td")[0].text] = row.find_all("td")[1].text
+            inner_table = tr.find("table")
+            for row in inner_table.find_all("tr"):
+                # sometimes the table contains ths, sometimes tds.
+                # This does not have any influence on the content though.
+                ths = row.find_all("th")
+                tds = row.find_all("td")
+                if ths:
+                    owners[ths[0].text] = ths[1].text
+                if tds:
+                    owners[tds[0].text] = tds[1].text
+
+
             information["Actionnaires"] = owners
 
     print(json.dumps(information))
