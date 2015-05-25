@@ -63,7 +63,10 @@ def extract_data(url):
                 ths = row.find_all("th")
                 tds = row.find_all("td")
                 if ths:
-                    owners[ths[0].text] = ths[1].text
+                    # sometimes th contains real information and not only
+                    # the headings. In this case we want to include the data
+                    if ths[0].text != u'Dénomination':
+                        owners[ths[0].text] = ths[1].text
                 if tds:
                     owners[tds[0].text] = tds[1].text
 
