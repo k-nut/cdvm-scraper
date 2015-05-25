@@ -5,14 +5,24 @@
   "language": "python",
   "data_type": "primary data",
   "identifying_fields": [
-    "Dénomination"
+    "Dénomination",
+    "type"
   ],
   "company_fields": {
     "name": "company"
   },
   "files": [
-    "scraper.py"
+    "scraper.py",
+    "transformer.py"
   ],
+  "transformers": [{
+    "file":  "transformer.py",
+    "data_type": "simple-licence",
+    "identifying_fields": [
+      "company_name",
+      "jurisdiction_classification"
+    ]
+  }],
   "frequency": "monthly",
   "publisher": {
     "name": "CDVM",
