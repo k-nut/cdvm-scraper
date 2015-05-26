@@ -21,7 +21,7 @@ def convert_data():
             "sample_date": raw_record['sample_date'],
             "jurisdiction_classification": raw_record['type'],
             "category": 'Financial',
-            "confidence": 'LOW',
+            "confidence": 'HIGH',
         }
 
         if u'Numéro d\'agrément' in raw_record.keys():
